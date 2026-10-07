@@ -1,0 +1,17 @@
+{
+    "ROS2.distro": "jazzy",
+    "python.autoComplete.extraPaths": [
+        "/home/antruong/ros2_ws/install/px4_msgs/lib/python3.12/site-packages",
+        "/home/antruong/ros2_ws/build/livox_sim_realism",
+        "/home/antruong/ros2_ws/install/livox_sim_realism/lib/python3.12/site-packages",
+        "/home/antruong/ros2_ws/install/livox_interfaces/lib/python3.12/site-packages",
+        "/opt/ros/jazzy/lib/python3.12/site-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/antruong/ros2_ws/install/px4_msgs/lib/python3.12/site-packages",
+        "/home/antruong/ros2_ws/build/livox_sim_realism",
+        "/home/antruong/ros2_ws/install/livox_sim_realism/lib/python3.12/site-packages",
+        "/home/antruong/ros2_ws/install/livox_interfaces/lib/python3.12/site-packages",
+        "/opt/ros/jazzy/lib/python3.12/site-packages"
+    ]
+}

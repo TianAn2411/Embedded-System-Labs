@@ -1,0 +1,31 @@
+# Build output (Makefile + STM32CubeIDE)
+build/
+Debug/
+Release/
+
+# Compiler / linker artifacts
+*.o
+*.d
+*.su
+*.cyclo
+*.elf
+*.bin
+*.hex
+*.map
+*.list
+
+# VS Code IntelliSense cache (browse.vc.db is >1GB)
+*.vc.db
+*.vc.db-*
+*.vc.db.lock
+.vscode/ipch/
+
+# Eclipse/CubeIDE per-machine state
+.metadata/
+*.launch.bak
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*~
+*.swp
