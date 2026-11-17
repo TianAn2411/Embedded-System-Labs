@@ -1,0 +1,65 @@
+/*
+ * app.overlay - Devicetree overlay cho Kit BKIT ARM4 (STM32F407ZGT6)
+ *
+ * Board goc: stm32f4_disco (cung chip STM32F407, thach anh HSE 8 MHz,
+ * SYSCLK 168 MHz). File nay "va" lai board goc cho dung phan cung BKIT.
+ */
+
+/ {
+	model = "BKIT ARM4 (STM32F407ZGT6)";
+
+	/* 1. Chon USART1 (PA9/PA10 -> MAX232 -> cong RS232 DB9) lam console */
+	chosen {
+		zephyr,console = &usart1;
+		zephyr,shell-uart = &usart1;
+	};
+
+	/* 2. Khai bao LED3 (LED DEBUG) noi vao chan PE4, tich cuc muc cao */
+	leds {
+		debug_led: led_debug {
+			gpios = <&gpioe 4 GPIO_ACTIVE_HIGH>;
+			label = "LED3 DEBUG (PE4)";
+		};
+
+		/* Output Y0 / Y1 (qua opto ra cong 12V) - co LED trang thai tren kit */
+		output_y0: output_y0 {
+			gpios = <&gpioe 5 GPIO_ACTIVE_HIGH>;
+			label = "OUTPUT Y0 (PE5)";
+		};
+
+		output_y1: output_y1 {
+			gpios = <&gpioe 6 GPIO_ACTIVE_HIGH>;
+			label = "OUTPUT Y1 (PE6)";
+		};
+	};
+
+	/* 3. Tro cac bi danh ve phan cung BKIT (chuong trinh dung led0/led1/led2) */
+	aliases {
+		led0 = &debug_led;     /* LED3  - PE4 */
+		led1 = &output_y0;     /* Out Y0 - PE5 */
+		led2 = &output_y1;     /* Out Y1 - PE6 */
+		/delete-property/ led3; /* LED xanh duong cua Discovery: khong dung */
+	};
+};
+
+/* USART1: PA9 = TX, PA10 = RX */
+&usart1 {
+	pinctrl-0 = <&usart1_tx_pa9 &usart1_rx_pa10>;
+	pinctrl-names = "default";
+	current-speed = <115200>;
+	status = "okay";
+};
+
+/*
+ * 4. Tat cac ngoai vi cua board Discovery co chan trung voi phan cung BKIT
+ *    (PA2/PA3 noi ESP8266, PD0/PD1 noi FSMC, PB6/PB9 noi I2C/CAN, ...)
+ */
+&usart2 { status = "disabled"; };
+&can1 { status = "disabled"; };
+&can2 { status = "disabled"; };
+&i2c1 { status = "disabled"; };
+&i2s3 { status = "disabled"; };
+&adc1 { status = "disabled"; };
+&timers2 { status = "disabled"; };
+&timers4 { status = "disabled"; };
+&usbotg_fs { status = "disabled"; };

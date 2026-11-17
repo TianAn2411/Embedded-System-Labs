@@ -1,0 +1,41 @@
+{
+  "version": "2.0.0",
+  "inputs": [
+    {
+      "id": "proj",
+      "type": "promptString",
+      "description": "Thu muc project (vd: lab1/bkit_blinky)",
+      "default": "lab1/bkit_blinky"
+    }
+  ],
+  "tasks": [
+    {
+      "label": "Zephyr: Build",
+      "type": "shell",
+      "command": "bash",
+      "args": ["-c", "source $HOME/zephyrproject/zephyr-env.sh && cd ${workspaceFolder}/${input:proj} && west build -p auto -b stm32f4_disco ."],
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "Zephyr: Pristine Build",
+      "type": "shell",
+      "command": "bash",
+      "args": ["-c", "source $HOME/zephyrproject/zephyr-env.sh && cd ${workspaceFolder}/${input:proj} && west build -p always -b stm32f4_disco ."],
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "Zephyr: Flash",
+      "type": "shell",
+      "command": "bash",
+      "args": ["-c", "source $HOME/zephyrproject/zephyr-env.sh && cd ${workspaceFolder}/${input:proj} && west flash --runner openocd"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Zephyr: Build + Flash",
+      "dependsOrder": "sequence",
+      "dependsOn": ["Zephyr: Build", "Zephyr: Flash"],
+      "problemMatcher": []
+    }
+  ]
+}
