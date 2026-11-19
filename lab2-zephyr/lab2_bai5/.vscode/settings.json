@@ -1,0 +1,14 @@
+{
+  "terminal.integrated.profiles.linux": {
+    "Zephyr (zsh)": {
+      "path": "/usr/bin/zsh",
+      "args": ["-c", "ZDOTDIR=$HOME/zephyrproject exec zsh -i"]
+    }
+  },
+  "terminal.integrated.defaultProfile.linux": "Zephyr (zsh)",
+  "C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json",
+  "files.associations": {
+    "*.overlay": "dts",
+    "prj.conf": "kconfig"
+  }
+}
